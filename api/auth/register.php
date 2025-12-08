@@ -45,29 +45,23 @@ $password = $post_data['password'];
 
 if (username_exists($username)) {
     header('Content-Type: application/json');
-    http_response_code(500);
+    http_response_code(409);
 
     echo json_encode([
-        'status' => '500',
-        'message' => 'duplicate username'
+        'status' => '409',
+        'message' => 'Username already exists'
     ]);
     exit;
 }
 
-$salt = random_bytes(6);
-$salted_password = "$password$salt";
-$password_hash = password_hash($salted_password, PASSWORD_DEFAULT);
+// Hash password using PHP's built-in function
+$password_hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
 
 // Insert user into database
 try {
-    $insert_query = "INSERT INTO customers (first_name, last_name, username, password, salt) VALUES (:firstname, :lastname, :username, :password, :salt)";
+    $insert_query = "INSERT INTO customers (first_name, last_name, username, password) VALUES (?, ?, ?, ?)";
     $insert_stmt = $db->prepare($insert_query);
-    $insert_stmt->bindValue(":firstname", $firstname, PDO::PARAM_STR);
-    $insert_stmt->bindValue(":lastname", $lastname, PDO::PARAM_STR);
-    $insert_stmt->bindValue(":username", $username, PDO::PARAM_STR);
-    $insert_stmt->bindValue(":password", $password_hash, PDO::PARAM_STR);
-    $insert_stmt->bindValue(":salt", $salt, PDO::PARAM_STR);
-    $insert_stmt->execute();
+    $insert_stmt->execute([$firstname, $lastname, $username, $password_hash]);
 
     header('Content-Type: application/json');
     http_response_code(201);

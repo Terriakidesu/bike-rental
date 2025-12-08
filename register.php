@@ -329,8 +329,8 @@
                             // Redirect to login or home page
 
                             setTimeout(() => {
-                                window.location.href = "/login.php";
-                            }, 1);
+                                window.location.href = "login.php";
+                            }, 1000);
                         } else if (data.status === 500 && data.message.includes('duplicate')) {
                             // Duplicate username error
                             const usernameInput = document.getElementById('username');
