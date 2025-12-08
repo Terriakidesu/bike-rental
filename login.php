@@ -233,7 +233,7 @@
                             console.log("Login successful:", data.message);
                             showSuccessModal(data.message);
                             // Redirect to dashboard or home page
-                            // window.location.href = '/dashboard.php';
+                            window.location.href = '/rental';
                         } else if (data.status === 401) {
                             // Invalid credentials
                             showErrorModal(data.message);

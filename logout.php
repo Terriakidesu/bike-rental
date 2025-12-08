@@ -10,6 +10,6 @@ if (isset($_SESSION["admin_authenticated"]) || isset($_SESSION["user_authenticat
 
 session_destroy();
 
-header("Location: ");
+header("Location: /rental");
 
 ?>
