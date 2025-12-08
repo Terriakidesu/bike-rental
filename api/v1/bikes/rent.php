@@ -31,7 +31,7 @@ $customer_id = $post_data['customer_id'];
 
 $dt_now = new DateTime();
 $dt_now_str = $dt_now->format('Y-m-d H:i:s');
-$dt_due = date('Y-m-d H:i:s', strtotime($dt_now_str . ' + 5 days'));
+$dt_due = date('Y-m-d H:i:s', strtotime("$dt_now_str + 5 days"));
 $dt_due = new DateTime($dt_due);
 
 $dt_now_posix = $dt_now->getTimestamp();
