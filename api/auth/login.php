@@ -65,6 +65,7 @@ try {
     $_SESSION['user_authenticated'] = true;
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['username'] = $user['username'];
+    $_SESSION['last_activity'] = time();
 
     header('Content-Type: application/json');
     http_response_code(200);

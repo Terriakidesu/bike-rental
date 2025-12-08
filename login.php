@@ -212,8 +212,6 @@
                 // Submit form via AJAX to handle JSON response
                 const formDataObj = Object.fromEntries(formData);
 
-                console.log(formDataObj)
-
                 fetch(formElement.action, {
                     method: 'POST',
                     headers: {
