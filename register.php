@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (isset($_SESSION["user_authenticated"])) {
+    header("Location: /rental");
+
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -350,15 +360,7 @@
 
     </script>
 
-    <?php
-    session_start();
 
-    if (isset($_SESSION["user_authenticated"])) {
-        header("Location: /");
-
-        exit;
-    }
-    ?>
 
 </body>
 

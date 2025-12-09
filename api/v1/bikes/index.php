@@ -44,7 +44,7 @@ if (isset($_GET["id"])) {
 } else {
 
     $sort_order_param = isset($_GET["sort"]) ? $_GET["sort"] : "id";
-    $sort_dir_param = isset($_GET["sort_dir"]) ? $_GET["sort_dir"] : "asc";
+    $sort_dir_param = isset($_GET["dir"]) ? $_GET["dir"] : "asc";
 
     $sort_order = isset($sort_orders[$sort_order_param]) ? $sort_orders[$sort_order_param] : "id";
     $sort_dir = isset($sort_directions[$sort_dir_param]) ? $sort_directions[$sort_dir_param] : "ASC";
